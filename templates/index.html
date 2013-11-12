@@ -1,0 +1,83 @@
+{% extends 'layout.html' %}
+{% block main %}
+      
+<div class="row">
+  <div class="col-md-8 col-md-push-3">
+    <div class="page-header">
+      <h2>ITP Dynamic Web Development - Fall 2013</h2>
+    </div>
+    
+    <h5>
+      @ <a href="http://itp.nyu.edu">Interactive Telecommunications Program</a> / NYU
+      <br>
+      with John Schimmel - <a href="mailto:schimmel@nyu.edu">schimmel@nyu.edu</a><br>
+      Tuesdays, 6:30 - 9:00PM<br>
+
+      <br>
+      <a href="http://itppyweb.herokuapp.com">http://itppyweb.heroku.com</a>
+    </h5>
+
+    <div class="page-header"><strong>Description</strong></div>
+    <p>
+      If you ever had a need to collect information from users on the web or use external data in your project, understanding web development will make your life much easier. The class will explore interaction between server-side and client-side of web development using Python and JavaScript. On the client-side, we will cover traditional JavaScript and the jQuery library to manipulate browser content, create and trigger page events and make AJAX data requests. Developing with Python on the server-side, we will explore receiving input from a user then querying and saving that data to a database, and finally, returning the appropriate content to the client, i.e. HTML or JSON. The websites we use today are rarely on a single database, we will focus on consuming data APIs from websites like Foursquare (for location information), Facebook (for social graph). Going further, we will create custom data APIs for use at ITP and open to the public.
+    </p>
+    <p>
+      Students must have prior HTML & CSS experience or be willing to learn it outside of class. Introduction to Computational Media or prior object oriented programming knowledge is required.
+    </p>
+
+    <div class="page-header"><strong>Requirements</strong></div>
+    <ul>
+      <li>Students must attend all classes and arrive on time to the start of class and any office hour appointments.</li>
+      <li>Respect your fellow students' questions and comments.</li>
+      <li>Be 'here'. Participate in class.</li>
+      <li>Assignments are given for each class to practice and try out recent topics. All assignments are required and must be completed.</li>
+      <li>Stay in touch - please email me if you need to miss class or need extra help.</li>
+      <li>No computer usage in class that is not relevant to the current topic.</li>
+    </ul>
+
+    <div class="page-header"><strong>Grading</strong></div>
+    <ul>
+      <li>30% Participation and contributions</li>
+      <li>40% Completed Assignments and documentation</li>
+      <li>30% Final project and documentation</li>
+    </ul>
+    
+    <div class="page-header"><strong>Office Hours</strong></div>
+    <p>TBD</p>    
+    
+    <hr>
+
+    <div class="page-header">
+      <h3>Syllabus</h3>
+    </div>
+    
+    <div id="syllabus_list">
+    {% for class in classnotes %}
+      <div>
+        <h4>{{ class.class_date.strftime("%B %d")}} {{ class.title }}</h4>
+        <p>{{ class.description }}<p>
+      </div>
+      <hr/>
+    {% endfor %}
+    </div>
+
+  </div>
+  
+  <div class="col-md-3 col-md-pull-8" id="side_schedule">
+    <h4>Schedule</h4>
+    
+    {% for class in classnotes %}
+    {{ class.class_date.strftime("%B %d")}}
+    <h5>{{class.title}}</h5>
+    {% if class.published %}
+    <a href="/notes/{{ class.url_title }}" class="btn btn-primary">View notes</a>
+    {% endif %}
+    <hr/>
+    {% endfor %}
+  </div>
+
+  
+</div>
+
+
+{% endblock %}

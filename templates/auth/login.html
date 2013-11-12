@@ -1,0 +1,16 @@
+{% extends "layout.html" %}
+
+{% block main %}
+  <h2>Login</h2>
+  <form action="" method="post">
+    <dl>
+      <dt>Email:
+      <dd><input type="text" name="email">
+      <dt>Password:
+      <dd><input type="password" name="password">
+      <dt>Remember Me:
+      <dd><input type="checkbox" name="remember" value="yes">
+      <dd><input type="submit" value="Login">
+    </dl>
+  </form>
+{% endblock %}

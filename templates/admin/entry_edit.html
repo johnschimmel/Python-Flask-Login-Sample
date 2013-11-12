@@ -1,0 +1,139 @@
+{% extends "layout.html" %}
+
+{% block styles %}
+<link rel="stylesheet" href="{{ url_for('static', filename='css/datepicker.css') }}">
+{% endblock %}
+
+{% block main %}
+<div class="row">
+
+	<div class="col-md-9">
+		<br><br><br>
+
+
+		<form method="POST" action="" id="admin_entry_edit" class="well form-horizontal">
+			<fieldset>
+          		<legend>Edit Class Entry</legend>
+				<div class="control-group">
+					<label class="control-label" for="title">Title</label>
+					<div class="controls">
+					  <input type="text" class="span7 input-xlarge" name="title" id="title" value="{{entry.title}}">
+					  <p class="hide help-block">In addition to freeform text, any HTML5 text-based input appears like so.</p>
+					</div>
+				</div>
+
+				<div class="control-group">
+					<label class="control-label" for="url_title">URL Title (Slug)</label>
+					<div class="controls">
+					  <input type="text" class="span7 input-xlarge" name="url_title" id="url_title" value="{{entry.url_title}}">
+					  <p class=" help-block">URL Title will be used to identify each entry. Only text, numbers, dashes and underscores.</p>
+					</div>
+				</div>
+
+				<div class="control-group">
+					<label class="control-label" for="description">Description</label>
+					<div class="controls">
+					  <textarea class="span7 input-xlarge" name="description" id="description">{{entry.description}}</textarea>
+					  <p class=" help-block">Description of the class entry.</p>
+					</div>
+				</div>
+
+				<div class="control-group">
+					<label class="control-label" for="class_date">Class date</label>
+					<div class="controls">
+					  <input type="date" class="datepicker span3 input-xlarge" value="{{entry.class_date.strftime("%Y-%m-%d")}}" name="class_date" id="class_date">
+					  <p class=" help-block"></p>
+					</div>
+				</div>
+
+
+
+				<div class="control-group">
+					<label class="control-label" for="published">Status</label>
+					<div class="controls">
+					  <select name="published" id="published">
+					  	<option value="false" {% if entry.published == False %}selected="SELECTED"{% endif %}>Draft</option>
+					  	<option value="true"  {% if entry.published == True %}selected="SELECTED"{% endif %}>Publish</option>
+					  </select>
+					  <p class=" help-block"></p>
+					</div>
+				</div>
+			</fieldset>
+			
+			<fieldset>
+          		<legend>Links</legend>
+
+				<div class="control-group">
+					<label class="control-label" for="github_url">Github Repo URL</label>
+					<div class="controls">
+					  <input type="text" class="span7 input-xlarge" name="github_url" id="github_url" value="{{ entry.github_url }}">
+					  
+					</div>
+				</div>
+
+
+				<div class="control-group">
+					<label class="control-label" for="demo_url">DEMO URL</label>
+					<div class="controls">
+					  <input type="text" class="span7 input-xlarge" name="demo_url" id="demo_url" value="{{ entry.demo_url }}">
+					</div>
+				</div>
+          	</fieldset>
+
+			<fieldset>
+          		<legend>Class notes</legend>
+
+				<div class="control-group">
+					<label class="control-label" for="content">Class Notes</label>
+					<div class="controls">
+					  <textarea class="span10 wysiwyg input-xlarge" style="resize:both; width: 810px; height: 350px;" name="content" id="content">{{entry.content}}</textarea>
+					  
+					</div>
+				</div>
+          	</fieldset>
+
+			<fieldset>
+          		<legend>Assignment</legend>
+
+				<div class="control-group">
+					<label class="control-label" for="assignment">Assignment</label>
+					<div class="controls">
+					  <textarea class="span10 wysiwyg input-xlarge" style="resize:both; width: 810px; height: 200px;"  name="assignment" id="assignment">{{entry.assignment}}</textarea>
+					  
+					</div>
+				</div>
+          	</fieldset>
+
+			
+			<input type="submit" value="Save entry" class="btn btn-primary">
+		</form>
+	</div>
+
+	<div class="col-md-3">
+
+		<h2>Assignments</h2>
+		{% for a in entry.assignments %}
+			<li>
+				{{ a.name}} - <a href="/admin/remove_assignment/{{entry.id}}/{{a._id}}">remove</a>
+			</li>
+		{% endfor %}
+
+	</div>
+</div>
+
+
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/libs/bootstrap-datepicker.js') }}" type="text/javascript"></script>
+<script src="{{ url_for('static', filename='js/tiny_mce/load_tinymce.js') }}"></script>
+<script src="{{ url_for('static', filename='js/tiny_mce/jquery.tinymce.js') }}"></script>
+
+<script>
+
+	jQuery(document).ready(function() {
+		load_tinymce();
+	});
+
+</script>
+{% endblock %}

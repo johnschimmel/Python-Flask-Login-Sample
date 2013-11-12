@@ -1,0 +1,5 @@
+Flask==0.10.1
+Flask-Bcrypt
+flask-login==0.2.7
+flask-mongoengine==0.7.0
+flask-markdown

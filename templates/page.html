@@ -1,0 +1,70 @@
+{% extends "layout.html" %}
+
+{% block styles %}{% endblock %}
+
+{% block main %}
+
+<br>
+<div class="page-header">
+	<h1>{{page.title}}</h1>
+	
+</div>
+
+<div class="row">
+
+	<div class="col-md-10">
+
+		
+		<div id="notes">
+			{{ page.content|markdown }}
+		</div>
+
+		
+		<a name="discussion"></a>
+		<div class="page-header" id="discussion">
+			<h3>Discussion</h3>
+			
+		</div>
+		<div class="row">
+			<div class="col-md-8">
+				<a class="moot" data-show_online="true"
+				   href="https://moot.it/i/itpdwd/page/{{page.slug}}">
+				   Comments for this class topic.
+				</a>
+		        
+
+			</div>
+		</div>
+	</div>
+</div>
+{% endblock %}
+
+{% block head %}
+   {{ super() }}
+   <!-- (1) Optimize for mobile versions: http://goo.gl/EOpFl -->
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+   <!-- (1) force latest IE rendering engine: http://goo.gl/tf4JH -->
+   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+   <!-- (1) Moot look and feel -->
+   <link rel="stylesheet" href="https://cdn.moot.it/1/moot.css">
+
+   <!-- (4) Custom CSS -->
+   <style>
+   body {
+      font-family: "myriad pro", tahoma, verdana, arial, sans-serif;
+      margin: 0; padding: 0;
+   }
+
+   .moot {
+      font-size: 18px;
+   }
+   </style>
+{% endblock %}
+
+{% block scripts %}
+	{{ super() }}
+  	<!-- (1) Moot client application -->
+   	<script src="https://cdn.moot.it/1/moot.min.js"></script>
+{% endblock %}

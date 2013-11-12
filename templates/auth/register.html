@@ -1,0 +1,21 @@
+{% extends "layout.html" %}
+
+{% block styles %}{% endblock %}
+
+{% block main %}
+<br><br><br><br>
+<form method="POST">
+    {{ form.csrf_token }}
+    {{ form.email.label }} {{ form.email() }}
+    <small>{{ form.email.description }}</small>
+    <br>
+    {{ form.password.label }} {{ form.password() }}
+    <br>
+    {{ form.confirm.label }} {{ form.confirm() }}
+    <br>
+    <input type="submit" value="Go">
+</form>
+
+{% endblock %}
+
+{% block scripts %}{% endblock %}
