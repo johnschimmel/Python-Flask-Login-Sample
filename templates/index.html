@@ -5,7 +5,12 @@
   <div class="col-md-8 col-md-push-1">
     <ul>
     {% for n in notes %}
-    <li><a href="/notes/{{n.id}}">{{n.title}}</a></li>
+    <li>
+      <a href="/notes/{{n.id}}">{{n.title}}</a>
+      {% if current_user.id == n.user.id%}
+      <a href="/notes/{{n.id}}/edit"><span class="label label-info">edit</span></a>
+      {% endif %}
+    </li>
     {% endfor %}
     </ul>
   </div>

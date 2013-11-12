@@ -23,21 +23,21 @@ def index():
 def admin_entry_create():
 
 	if request.method == "POST":
-		entry = models.Note()
-		entry.title = request.form.get('title','')
-		entry.content = request.form.get('content')
+		note = models.Note()
+		note.title = request.form.get('title','')
+		note.content = request.form.get('content')
 
 		# associate note to currently logged in user
-		entry.user = current_user.get_mongo_doc()
-		entry.save()
+		note.user = current_user.get_mongo_doc()
+		note.save()
 
 		
-		return redirect('/notes/%s' % entry.id)
+		return redirect('/notes/%s' % note.id)
 
 	else:
 		template_data = {
 			'title' : 'Create new note',
-			'entry' : None
+			'note' : None
 		}
 		return render_template('/note_edit.html', **template_data)
 
@@ -47,24 +47,24 @@ def admin_entry_create():
 def admin_entry_edit(note_id):
 
 	# get single document returned
-	entry = models.Note.objects().with_id(note_id)
+	note = models.Note.objects().with_id(note_id)
 
-	if entry:
-		if entry.user.id != current_user.id:
+	if note:
+		if note.user.id != current_user.id:
 			return "Sorry you do not have permission to edit this note"
 
 		if request.method == "POST":
-			entry.title = request.form.get('title','')
-			entry.content = request.form.get('content')
+			note.title = request.form.get('title','')
+			note.content = request.form.get('content')
 			
-			entry.save()
+			note.save()
+
+			flash('Note has been updated')
 
 		template_data = {
 			'title' : 'Edit note',
-			'entry' : entry
+			'note' : note
 		}
-
-		current_app.logger.debug(current_user.id)
 
 		return render_template('/note_edit.html', **template_data)
 
@@ -76,11 +76,11 @@ def admin_entry_edit(note_id):
 def entry_page(note_id):
 
 	# get class notes entry with matching slug
-	entry = models.Note.objects().with_id(note_id)
+	note = models.Note.objects().with_id(note_id)
 
-	if entry:
+	if note:
 		templateData = {
-			'entry' : entry
+			'note' : note
 		}
 		return render_template('note_display.html', **templateData)
 

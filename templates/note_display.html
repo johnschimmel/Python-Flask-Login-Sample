@@ -2,8 +2,10 @@
 
 {% block main %}
 <div class="page-header">
-	<h1>{{entry.title}}</h1>
-	<p><a href="/notes/{{entry.id}}/edit">edit</a></p>
+	<h1>{{note.title}}</h1>
+	{% if current_user.id == note.user.id%}
+    <p><a href="/notes/{{note.id}}/edit"><span class="label label-info">edit</span></a></p>
+    {% endif %}
 	
 </div>
 
@@ -12,7 +14,7 @@
 	<div class="col-md-10">
 		
 		<div id="notes">
-			{{ entry.content }}
+			{{ note.content }}
 		</div>
 		
 	</div>
