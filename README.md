@@ -97,6 +97,10 @@ Blueprints allow you to separate your app into modules removing core code from A
 
 ### run_server.py
 
+	foreman start
+
+If you don't have foreman, download and install the [Heroku Toolbelt](http://toolbelt.heroku.com)
+
 run_server.py does the following tasks to get the app ready
 
 * Imports app.py - app.py implements database connection, session management, login manager setup.
