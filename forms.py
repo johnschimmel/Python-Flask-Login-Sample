@@ -13,7 +13,3 @@ class SignupForm(user_form):
 # Login form will provide a Password field (WTForm form field)
 class LoginForm(user_form):
     password = PasswordField('Password',validators=[validators.Required()])
-
-
-# Admin form
-page_form = model_form(models.Page)

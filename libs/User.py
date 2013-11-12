@@ -53,6 +53,12 @@ class User(UserMixin):
             print "there was an error"
             return None
 
+    def get_mongo_doc(self):
+        if self.id:
+            return models.User.objects.with_id(self.id)
+        else:
+            return None
+
     def get_by_id(self, id):
     	dbUser = models.User.objects.with_id(id)
     	if dbUser:

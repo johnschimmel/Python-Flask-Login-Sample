@@ -23,7 +23,28 @@
     </head>
   <body>
 
-        <!-- Fixed navbar -->
+    <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+      <a class="navbar-brand" href="#">ITP Py Flask Login Demo</a>
+      <ul class="nav navbar-nav">
+        <li>
+          <a href="/">Home</a>
+        </li>
+        {% if current_user.is_authenticated() %}
+        <li>
+          <a href="/notes/create">Create new note</a>
+        </li>
+        <li>
+          <a href="#">{{current_user.email}}</a>
+        </li>
+        <li>
+          <a href="/logout">Logout</a>
+        </li>
+        {% else %}
+        <li><a href="/login">Login</a></li>
+        <li><a href="/register">Register</a></li>
+        {% endif %}
+      </ul>
+    </nav>
    
 
     <div class="container">

@@ -1,20 +1,36 @@
 {% extends "layout.html" %}
-
-{% block styles %}{% endblock %}
+Z
 
 {% block main %}
-<br><br><br><br>
-<form method="POST">
-    {{ form.csrf_token }}
-    {{ form.email.label }} {{ form.email() }}
-    <small>{{ form.email.description }}</small>
-    <br>
-    {{ form.password.label }} {{ form.password() }}
-    <br>
-    {{ form.confirm.label }} {{ form.confirm() }}
-    <br>
-    <input type="submit" value="Go">
-</form>
+
+  <div class="row">
+    <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+      <form action="" method="POST" role="form">
+      	{{ form.csrf_token }}
+        <legend>Register a new user</legend>
+      
+        <div class="form-group">
+          <label for="">Email:</label>
+          <input type="email" id="email" name="email" required="required" class="form-control" placeholder="Email">
+        </div>
+
+        <div class="form-group">
+          <label for="">Password:</label>
+          <input type="password" name="password" id="password" class="form-control" required="required" title="">
+        </div>
+        
+        <div class="form-group">
+          <label for="">Repeat Password:</label>
+          <input type="password" name="confirm" id="confirm" class="form-control" required="required" title="">
+        </div>
+        
+      
+        <button type="submit" class="btn btn-primary">Register</button>
+      </form>
+    </div>
+  </div>
+
+  
 
 {% endblock %}
 

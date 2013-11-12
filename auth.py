@@ -20,7 +20,7 @@ def login():
 
 			if login_user(user, remember=remember):
 				flash("Logged in!")
-				return redirect(request.args.get("next") or '/admin')
+				return redirect('/notes/create')
 			else:
 				flash("unable to log you in")
 
@@ -37,7 +37,7 @@ def register():
 
 	if request.method == 'POST' and registerForm.validate() == False:
 		current_app.logger.info(registerForm.errors)
-		return "no"
+		return "uhoh registration error"
 
 	elif request.method == 'POST' and registerForm.validate():
 		email = request.form['email']
@@ -53,7 +53,7 @@ def register():
 			user.save()
 			if login_user(user, remember="no"):
 				flash("Logged in!")
-				return redirect(request.args.get("next") or url_for("index"))
+				return redirect('/')
 			else:
 				flash("unable to log you in")
 
