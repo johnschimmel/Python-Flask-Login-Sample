@@ -5,10 +5,10 @@ from flask.ext.mongoengine import MongoEngine, MongoEngineSessionInterface
 from flask.ext.login import LoginManager
 from flask.ext.bcrypt import Bcrypt
 
-app = Flask("dwdfall2013")
+app = Flask("FlaskLoginApp")
 
-app.config['MONGODB_SETTINGS'] = {'HOST':os.environ.get('MONGOLAB_URI'),'DB': 'dwdfall2013'}
-# app.config['TESTING'] = True
+# database connection
+app.config['MONGODB_SETTINGS'] = {'HOST':os.environ.get('MONGOLAB_URI'),'DB': 'FlaskLogin'}
 app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY')
 app.debug = os.environ.get('DEBUG',False)
 
