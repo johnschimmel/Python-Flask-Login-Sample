@@ -5,6 +5,7 @@ from flask.ext.mongoengine import MongoEngine, MongoEngineSessionInterface
 from flask.ext.login import LoginManager
 from flask.ext.bcrypt import Bcrypt
 
+# Create and name Flask app
 app = Flask("FlaskLoginApp")
 
 # database connection
@@ -18,6 +19,6 @@ app.session_interface = MongoEngineSessionInterface(db) # sessions w/ mongoengin
 # Flask BCrypt will be used to salt the user password
 flask_bcrypt = Bcrypt(app)
 
-# flask login manager
+# Associate Flask-Login manager with current app
 login_manager = LoginManager()
 login_manager.init_app(app)
